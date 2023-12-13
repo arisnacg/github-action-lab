@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get SHA, message, author from commit
+      - name: Get SHA short, message, author from commit
         id: commit
         run: |
-          echo "::set-output name=sha::$(git rev-parse HEAD)"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=message::$(git log -1 --pretty=%B)"
           echo "::set-output name=author::$(git log -1 --pretty=%an)"
     outputs:
-      sha: ${{ steps.commit.outputs.sha }}
+      sha_short: ${{ steps.commit.outputs.sha_short }}
       message: ${{ steps.commit.outputs.message }}
-      author: ${{ steps.commit.outputs.message }}
+      author: ${{ steps.commit.outputs.author }}
   job-2:
     name: Job 2
     runs-on: ubuntu-latest
@@ -27,6 +27,6 @@ jobs:
     steps:
       - name: Print SHA, message, author from Job 1
         run: |
-          echo "SHA: ${{ needs.job-1.outputs.sha }}"
+          echo "SHA: ${{ needs.job-1.outputs.sha_short }}"
           echo "Message: ${{ needs.job-1.outputs.message }}"
           echo "Author: ${{ needs.job-1.outputs.author }}"
