@@ -8,6 +8,11 @@ jobs:
   job-1:
     name: Job 1
     runs-on: ubuntu-latest
+    outputs:
+      sha_short: ${{ steps.commit.outputs.sha_short }}
+      message: ${{ steps.commit.outputs.message }}
+      author: ${{ steps.commit.outputs.author }}
+      count: ${{ steps.stepid.outputs.count }}
     steps:
       - uses: actions/checkout@v2
       - name: Get SHA short, message, author from commit
@@ -16,10 +21,9 @@ jobs:
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           echo "::set-output name=message::$(git log -1 --pretty=%B)"
           echo "::set-output name=author::$(git log -1 --pretty=%an)"
-    outputs:
-      sha_short: ${{ steps.commit.outputs.sha_short }}
-      message: ${{ steps.commit.outputs.message }}
-      author: ${{ steps.commit.outputs.author }}
+      - name: Set output
+        id: stepid
+        run: echo "count=5" >> $GITHUB_OUTPUT
   job-2:
     name: Job 2
     runs-on: ubuntu-latest
@@ -30,3 +34,6 @@ jobs:
           echo "SHA: ${{ needs.job-1.outputs.sha_short }}"
           echo "Message: ${{ needs.job-1.outputs.message }}"
           echo "Author: ${{ needs.job-1.outputs.author }}"
+      - name: Print count from Job 1
+        run: |
+          echo "Count: ${{ needs.job-1.outputs.count }}"
