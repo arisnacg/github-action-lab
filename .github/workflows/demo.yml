@@ -13,9 +13,9 @@ jobs:
       - name: Get SHA, message, author from commit
         id: commit
         run: |
-          echo "{sha}={$(git rev-parse HEAD)}" >> $GITHUB_OUTPUT
-          echo "{message}={$(git log -1 --pretty=%B)}" >> $GITHUB_OUTPUT
-          echo "{author}={$(git log -1 --pretty=%B)}" >> $GITHUB_OUTPUT
+          echo "::set-output name=sha::$(git rev-parse HEAD)"
+          echo "::set-output name=message::$(git log -1 --pretty=%B)"
+          echo "::set-output name=author::$(git log -1 --pretty=%an)"
     outputs:
       sha: ${{ steps.commit.outputs.sha }}
       message: ${{ steps.commit.outputs.message }}
