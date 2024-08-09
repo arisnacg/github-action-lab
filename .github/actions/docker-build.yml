@@ -1,0 +1,7 @@
+name: Docker Image Build
+
+run:
+  using: composite
+  steps:
+    - name: Build Docker image
+      run: docker build -t my-docker-image .
