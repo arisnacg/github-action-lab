@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Builds Docker Image
-        uses: ./.github/actions/docker-build.yml
+        uses: ./.github/actions/docker-build
