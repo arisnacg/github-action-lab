@@ -1,6 +1,6 @@
 name: Docker Image Build
 
-run:
+runs:
   using: composite
   steps:
     - name: Build Docker image
