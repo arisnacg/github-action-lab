@@ -4,4 +4,5 @@ runs:
   using: composite
   steps:
     - name: Build Docker image
+      shell: bash
       run: docker build -t my-docker-image .
