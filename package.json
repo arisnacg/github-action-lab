@@ -14,8 +14,8 @@
 		"typescript": "^5.5.4"
 	},
 	"scripts": {
-		"lint": "biome lint",
-		"test": "jest",
+		"lint": "biome lint src/",
+		"test": "jest --coverage",
 		"build": "tsc",
 		"start": "node ./dist/main.js"
 	}
