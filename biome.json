@@ -3,8 +3,5 @@
 	"linter": {
 		"enabled": true,
 		"rules": { "recommended": true }
-	},
-	"files": {
-		"ignore": ["dist/"]
 	}
 }
