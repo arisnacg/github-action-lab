@@ -1,10 +1,13 @@
-import { addition } from "./lib";
+import { addition, multiplication } from "./lib";
 
 describe("Lib: addition function", () => {
+	it("return correct value", () => {
+		expect(addition(2, 3)).toEqual(5);
+	});
+});
 
-  it("return correct value", () => {
-    expect(addition(2, 3)).toEqual(5);
-  });
-
-  it.todo("return null if one of the value is null");
+describe("Lib: multiplication function", () => {
+	it("return correct value", () => {
+		expect(multiplication(2, 3)).toEqual(6);
+	});
 });
